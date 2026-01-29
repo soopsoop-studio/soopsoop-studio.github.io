@@ -176,10 +176,10 @@ python -m http.server 8000
 
 ## 📞 연락처
 
-- **Email**: your-email@example.com
+- **Email**:
 - **Instagram**: @soopsoop_studio
 - **Shop**: [링크 추가]
 
 ---
 
-Made with 🧶 by SoopSoop
+Made with 🧶 by 숲숲
