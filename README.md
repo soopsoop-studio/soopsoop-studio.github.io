@@ -1,47 +1,185 @@
 # 🌿 SoopSoop Studio
 
-> **독립 창작자 숲숲(SoopSoop)**의 디지털 가든입니다.  
-> 기록하고, 연결하고, 확장합니다.
+독립 창작자 숲숲의 디지털 가든 웹사이트
+
+## 📁 파일 구조
+
+```
+soopsoop-studio/
+├── index.html          # 메인 HTML 파일
+├── style.css           # 스타일시트 (그래니 스퀘어 테마)
+├── script.js           # 인터랙션 및 애니메이션
+├── images/             # 이미지 폴더 (생성 필요)
+│   └── granny-square/  # 코바늘 작품 사진들
+└── README.md           # 이 파일
+```
+
+## 🎨 디자인 컨셉
+
+**그래니 스퀘어 (Granny Square) 코바늘 패턴을 웹 디자인에 적용**
+
+- 각 콘텐츠 섹션이 그래니 스퀘어 타일처럼 배치
+- 코바늘 실 색상 팔레트 (테라코타, 올리브, 머스타드, 라벤더 등)
+- 이중 테두리로 코바늘 레이어 효과 구현
+- 천 질감 텍스처 오버레이
+- 실 패턴 구분선
+
+## 🖼️ 이미지 추가 방법
+
+### 1. 그래니 스퀘어 작품 사진 준비
+- 정사각형 비율 권장 (1:1 또는 4:3)
+- 고해상도 (최소 800x800px)
+- 밝고 깨끗한 배경
+
+### 2. images 폴더 생성 및 업로드
+```bash
+mkdir images
+mkdir images/granny-square
+```
+
+### 3. HTML에서 이미지 placeholder 교체
+```html
+<!-- 기존 -->
+<div class="update-image-placeholder">
+    <div class="placeholder-text">그래니 스퀘어<br/>작품 사진</div>
+</div>
+
+<!-- 변경 후 -->
+<div class="update-image-placeholder">
+    <img src="images/granny-square/blanket-01.jpg" alt="그래니 스퀘어 블랭킷">
+</div>
+```
+
+### 4. CSS 추가 (이미지용)
+```css
+.update-image-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+```
+
+## 🎨 색상 커스터마이징
+
+`style.css`의 `:root` 섹션에서 색상 변경:
+
+```css
+:root {
+    --cream: #FFF8E7;        /* 배경색 */
+    --terracotta: #D97652;   /* 주요 강조색 */
+    --olive: #8B9556;        /* 보조색 1 */
+    --mustard: #E8B44C;      /* 보조색 2 */
+    --lavender: #B8A5D1;     /* 보조색 3 */
+    /* ... */
+}
+```
+
+실제 코바늘 작품의 색상을 추출해서 사용하면 더욱 통일감 있는 디자인!
+
+## ⚙️ 기능
+
+### 스크롤 애니메이션
+- 각 요소가 화면에 나타날 때 페이드인 효과
+- `data-aos` 속성으로 애니메이션 지연 시간 조절 가능
+
+### 호버 효과
+- 그래니 스퀘어 타일: 위로 떠오르며 살짝 회전
+- 이미지 카드: 확대 및 테두리 색상 변경
+- 푸터 링크: 언더라인 애니메이션
+
+### 반응형 디자인
+- 모바일, 태블릿, 데스크톱 모두 지원
+- 768px 이하에서 1단 그리드로 변경
+
+## 📝 콘텐츠 추가 방법
+
+### 새로운 그래니 스퀘어 타일 추가
+
+```html
+<div class="granny-square YOUR-COLOR-CLASS" data-aos="fade-up" data-aos-delay="600">
+    <div class="square-content">
+        <div class="square-icon">🎯</div>
+        <h3>새 프로젝트</h3>
+        <p>프로젝트 설명</p>
+        <a href="#new" class="square-link">보기 →</a>
+    </div>
+    <div class="square-border"></div>
+</div>
+```
+
+### 색상 클래스 추가 (CSS)
+
+```css
+.granny-square.YOUR-COLOR-CLASS {
+    background: linear-gradient(135deg, #색상1 0%, #색상2 100%);
+    color: white;
+}
+```
+
+### 최근 업데이트 카드 추가
+
+```html
+<div class="update-card" data-aos="fade-up" data-aos-delay="300">
+    <div class="update-image-placeholder">
+        <img src="images/your-image.jpg" alt="설명">
+    </div>
+    <div class="update-info">
+        <span class="update-date">2026.01.29</span>
+        <h4>작업 제목</h4>
+    </div>
+</div>
+```
+
+## 🚀 배포 방법
+
+### GitHub Pages
+1. GitHub 저장소에 파일 업로드
+2. Settings → Pages → Source: main branch 선택
+3. `https://yourusername.github.io/soopsoop-studio` 에서 확인
+
+### 로컬 테스트
+```bash
+# Python 3 사용 시
+python -m http.server 8000
+
+# 브라우저에서 http://localhost:8000 접속
+```
+
+## 💡 추가 개선 아이디어
+
+1. **실제 그래니 스퀘어 패턴을 배경으로**
+   - SVG로 그래니 스퀘어 패턴 제작
+   - 반복 패턴 배경으로 사용
+
+2. **인터랙티브 갤러리**
+   - Lightbox 효과로 작품 크게 보기
+   - 슬라이더로 여러 작품 넘기기
+
+3. **블로그 섹션**
+   - 각 프로젝트별 상세 페이지
+   - 작업 과정 기록
+
+4. **다크모드**
+   - 저녁 느낌의 어두운 색상 팔레트
+   - 토글 버튼으로 전환
+
+5. **로딩 애니메이션**
+   - 실이 감기는 애니메이션
+   - 코바늘 바늘 움직이는 효과
+
+## 🔧 기술 스택
+
+- **HTML5**: 시맨틱 마크업
+- **CSS3**: Grid, Flexbox, CSS Variables, 애니메이션
+- **Vanilla JavaScript**: DOM 조작, Intersection Observer
+- **Google Fonts**: Crimson Pro (디스플레이), DM Sans (본문)
+
+## 📞 연락처
+
+- **Email**: your-email@example.com
+- **Instagram**: @soopsoop_studio
+- **Shop**: [링크 추가]
 
 ---
 
-## 🚀 2026 Quantum Jump
-**"내가 좋아하는 일로 먹고 살 수 있을까?"** 이 질문에 답하기 위해 2026년, 단단한 루틴과 몰입으로 도약합니다.
-
-### 🧶 Project 1. Wink and Smile
-**나만의 뜨개 브랜드 & 스마트스토어**
-- [x] 브랜드 아이덴티티 정립 (완료!)
-- [ ] 네이버 스마트스토어 오픈
-- [ ] 2026 시즌 상품 기획
-
-### 🔥 Project 2. 불꽃 독서 클럽 (Fireworks Reading Club)
-**1년 12달, 테마가 있는 독서 대장정**
-
-| 기간 | 테마 | 선정 장르 | 핵심 목표 |
-|:---:|:---|:---|:---|
-| **1월** | [도약] 집중과 몰입 | 🌌 SF (우주) | 브레인랏 탈출! 13cm 독서 마천루의 초석 쌓기 |
-| **2월** | [혈맥] 규방의 불꽃 | 👻 오컬트/한국고전 | 바리데기, 사씨남정기 등 나의 뿌리와 운명 탐구 |
-| **3월** | [기원] 여성의 신화 | 🧜‍♀️ 신화 (리텔링) | 이야기의 시작점. 매들린 밀러, 나탈리 헤인즈 등 |
-| **4월** | [경이] 과학적 자연 | 🌿 자연 과학 | 지구의 날 기념, 퀀텀과 진화 인류학으로 본 자연 |
-| **5월** | [연대] 다정한 돌봄 | 🏡 가족/관계 에세이 | 가정의 달, 사랑과 돌봄의 다양한 형태 관찰하기 |
-| **6월** | [흔적] 기억의 아카이브 | 🇰🇷 역사/르포 | 6.25와 현충일, 잊힌 목소리와 로컬 기록 수집 |
-| **7월** | [심연] 한여름의 지성 | ❄️ 추리/미스터리 | 장르문학 제철! 서늘한 몰입으로 무더위 격파 |
-| **8월** | [몰입] 예술의 언어 | 🎨 예술 비평 | **9월 전시 준비**를 위한 철학적·미학적 무장 |
-| **9월** | [시각] 이미지의 서사 | 💬 그래픽 노블 | **9/14~20 전시!** 시각적 영감과 사장님 생일 주간 |
-| **10월** | [관찰] 인간이라는 숲 | 🔭 사회/인류학 | 에세이 거장 6인방의 시선으로 본 사회 관찰 |
-| **11월** | [탈출] 다른 세계의 문 | 🐉 판타지 | 연말 전의 환기. 거대한 상상력의 세계로 도피 |
-| **12월** | [응축] 언어의 정수 | 📜 시 (Poetry) | 1년의 모든 실험 데이터를 단 몇 줄로 압축 |
-
-### 🎨 Project 3. Creative Lab
-**기록이 작품이 되는 실험실**
-- **🌡️ 온도 담요 (Temperature Blanket)**: 1월 1일부터 매일의 부산 온도를 기록하며 뜨는 기록물.
-- **🖼️ 3인 그룹 전시**: 2026년 9월 14일 ~ 20일 (부산, '실' 테마)
-- **📚 Zine Making**: 다양한 주제의 진(Zine) 제작 & 로컬 매거진 실험
-
----
-#### 📨 Contact
-- **Instagram**: @(인스타아이디)
-- **Email**: (메일주소)
-
-<br>
-<p align="center">Last Updated: 2026.01.28</p>
+Made with 🧶 by SoopSoop

@@ -1,0 +1,496 @@
+:root {
+    /* 코바늘 실 색상 팔레트 - 따뜻하고 빈티지한 느낌 */
+    --cream: #FFF8E7;
+    --terracotta: #D97652;
+    --olive: #8B9556;
+    --mustard: #E8B44C;
+    --lavender: #B8A5D1;
+    --sage: #A8B69E;
+    --rust: #A85751;
+    --dark-text: #3A3331;
+    
+    /* 폰트 */
+    --font-display: 'Crimson Pro', serif;
+    --font-body: 'DM Sans', sans-serif;
+    
+    /* 간격 */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 3rem;
+    --spacing-xl: 5rem;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--cream);
+    color: var(--dark-text);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+/* 텍스처 오버레이 - 천 질감 */
+.texture-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 0, 0, 0.01) 2px,
+            rgba(0, 0, 0, 0.01) 4px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 0, 0, 0.01) 2px,
+            rgba(0, 0, 0, 0.01) 4px
+        );
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.4;
+}
+
+/* 헤더 */
+.main-header {
+    padding: var(--spacing-xl) var(--spacing-md);
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    animation: fadeInDown 1s ease-out;
+}
+
+.studio-title {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 300;
+    color: var(--rust);
+    margin-bottom: var(--spacing-sm);
+    letter-spacing: 0.02em;
+    position: relative;
+}
+
+.studio-title::before,
+.studio-title::after {
+    content: '🌿';
+    position: absolute;
+    font-size: 2rem;
+    opacity: 0.6;
+    animation: float 3s ease-in-out infinite;
+}
+
+.studio-title::before {
+    left: -3rem;
+    animation-delay: 0s;
+}
+
+.studio-title::after {
+    right: -3rem;
+    animation-delay: 1.5s;
+}
+
+.studio-subtitle {
+    font-size: 1.2rem;
+    color: var(--olive);
+    font-weight: 400;
+}
+
+/* 그래니 스퀘어 그리드 */
+.granny-grid-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: var(--spacing-lg) var(--spacing-md);
+    position: relative;
+    z-index: 2;
+}
+
+.granny-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+/* 그래니 스퀘어 타일 - 실제 코바늘 패턴처럼 */
+.granny-square {
+    aspect-ratio: 1/1;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+/* 이중 테두리 효과 - 그래니 스퀘어 레이어 */
+.granny-square::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    padding: 8px;
+    background: linear-gradient(135deg, currentColor, transparent);
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.3;
+    z-index: 1;
+}
+
+.square-border {
+    position: absolute;
+    inset: 12px;
+    border: 3px solid currentColor;
+    border-radius: 15px;
+    opacity: 0.2;
+    z-index: 1;
+    transition: all 0.4s ease;
+}
+
+.square-content {
+    position: relative;
+    z-index: 2;
+    padding: var(--spacing-md);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.square-icon {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-sm);
+    animation: rotateIn 0.6s ease-out;
+}
+
+.granny-square h2,
+.granny-square h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    margin-bottom: var(--spacing-xs);
+    font-size: 1.8rem;
+}
+
+.granny-square p {
+    font-size: 1rem;
+    opacity: 0.8;
+    margin-bottom: var(--spacing-sm);
+}
+
+.square-link {
+    color: inherit;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    margin-top: auto;
+}
+
+.granny-square:hover .square-link {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 각 스퀘어 색상 */
+.granny-square.featured {
+    background: linear-gradient(135deg, var(--mustard) 0%, var(--terracotta) 100%);
+    color: white;
+    grid-column: span 2;
+}
+
+.granny-square.wink {
+    background: linear-gradient(135deg, var(--lavender) 0%, var(--sage) 100%);
+    color: white;
+}
+
+.granny-square.lab {
+    background: linear-gradient(135deg, var(--olive) 0%, var(--sage) 100%);
+    color: white;
+}
+
+.granny-square.reading {
+    background: linear-gradient(135deg, var(--terracotta) 0%, var(--rust) 100%);
+    color: white;
+}
+
+.granny-square.zine {
+    background: linear-gradient(135deg, var(--sage) 0%, var(--olive) 100%);
+    color: white;
+}
+
+.granny-square.exhibition {
+    background: linear-gradient(135deg, var(--lavender) 0%, var(--terracotta) 100%);
+    color: white;
+}
+
+.granny-square:hover {
+    transform: translateY(-10px) rotate(2deg);
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.15),
+        0 0 0 12px rgba(255, 255, 255, 0.1);
+}
+
+.granny-square:hover .square-border {
+    inset: 8px;
+    opacity: 0.4;
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.4rem 1rem;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-top: var(--spacing-sm);
+    backdrop-filter: blur(10px);
+}
+
+/* 실 구분선 */
+.yarn-divider {
+    width: 100%;
+    height: 3px;
+    background: 
+        repeating-linear-gradient(
+            90deg,
+            var(--terracotta) 0px,
+            var(--terracotta) 10px,
+            transparent 10px,
+            transparent 20px
+        );
+    margin: var(--spacing-xl) 0 var(--spacing-lg) 0;
+    position: relative;
+}
+
+.yarn-divider::before,
+.yarn-divider::after {
+    content: '◆';
+    position: absolute;
+    color: var(--terracotta);
+    font-size: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.yarn-divider::before {
+    left: -1rem;
+}
+
+.yarn-divider::after {
+    right: -1rem;
+}
+
+/* 최근 업데이트 */
+.recent-updates {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: var(--spacing-lg) var(--spacing-md);
+    position: relative;
+    z-index: 2;
+}
+
+.section-title {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    color: var(--rust);
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+    font-weight: 400;
+}
+
+.updates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.update-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 3px solid var(--sage);
+}
+
+.update-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    border-color: var(--terracotta);
+}
+
+.update-image-placeholder {
+    aspect-ratio: 4/3;
+    background: linear-gradient(135deg, var(--lavender) 0%, var(--sage) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    text-align: center;
+    line-height: 1.6;
+}
+
+.update-info {
+    padding: var(--spacing-md);
+}
+
+.update-date {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--olive);
+    font-weight: 500;
+    margin-bottom: var(--spacing-xs);
+}
+
+.update-card h4 {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    color: var(--dark-text);
+    font-weight: 600;
+}
+
+/* 푸터 */
+.site-footer {
+    background: linear-gradient(135deg, var(--olive) 0%, var(--sage) 100%);
+    color: white;
+    padding: var(--spacing-lg) var(--spacing-md);
+    margin-top: var(--spacing-xl);
+    position: relative;
+    z-index: 2;
+}
+
+.footer-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+}
+
+.footer-links {
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.footer-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: white;
+    transition: width 0.3s ease;
+}
+
+.footer-links a:hover::after {
+    width: 100%;
+}
+
+/* 애니메이션 */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-10px) rotate(5deg);
+    }
+}
+
+@keyframes rotateIn {
+    from {
+        opacity: 0;
+        transform: rotate(-180deg) scale(0);
+    }
+    to {
+        opacity: 1;
+        transform: rotate(0) scale(1);
+    }
+}
+
+/* AOS 애니메이션 (스크롤 시) */
+[data-aos="fade-up"] {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+[data-aos="fade-up"].aos-animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+    .studio-title {
+        font-size: 3rem;
+    }
+    
+    .studio-title::before,
+    .studio-title::after {
+        display: none;
+    }
+    
+    .granny-square.featured {
+        grid-column: span 1;
+    }
+    
+    .granny-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --spacing-lg: 2rem;
+        --spacing-xl: 3rem;
+    }
+    
+    .granny-square h2,
+    .granny-square h3 {
+        font-size: 1.5rem;
+    }
+}

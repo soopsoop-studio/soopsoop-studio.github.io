@@ -1,60 +1,147 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SoopSoop Studio</title>
-
-  <style>
-    body {
-      font-family: 'Pretendard', sans-serif;
-      text-align: center;
-      background-color: #f4f4f4;
-      color: #333;
-      margin-top: 100px;
-    }
-
-    h1 {
-      font-size: 3rem;
-      color: #2E8B57;
-    }
-
-    /* 숲숲 컬러 */
-    .container {
-      background: white;
-      padding: 50px;
-      border-radius: 20px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    .lab-badge {
-      background-color: #FF6B6B;
-      color: white;
-      padding: 5px 10px;
-      border-radius: 15px;
-      font-size: 0.8rem;
-      font-weight: bold;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌿 SoopSoop Studio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;600&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
-  <div class="container">
-    <h1>🌿 SoopSoop Studio</h1>
-    <p>독립 창작자 <b>숲숲(SoopSoop)</b>의 디지털 가든입니다.</p>
-    <br>
-    <p>🚀 <b>2026 Quantum Jump</b> 준비 중...</p>
-    <hr>
-    <h3>📂 Category</h3>
-    <p>🧶 Wink and Smile (Brand)</p>
-    <p>🧪 <span class="lab-badge">Soop's Lab</span> (실험실)</p>
-  </div>
+    <!-- 배경 텍스처 -->
+    <div class="texture-overlay"></div>
+    
+    <!-- 메인 헤더 -->
+    <header class="main-header">
+        <div class="header-content">
+            <h1 class="studio-title">SoopSoop Studio</h1>
+            <p class="studio-subtitle">독립 창작자 숲숲의 디지털 가든</p>
+        </div>
+    </header>
 
-  <p><a href="plan">🚀 2026 Quantum Jump 계획 보기</a></p>
+    <!-- 그래니 스퀘어 그리드 -->
+    <main class="granny-grid-container">
+        <div class="granny-grid">
+            <!-- 중앙: 2026 Quantum Jump -->
+            <div class="granny-square featured" data-aos="fade-up">
+                <div class="square-content">
+                    <div class="square-icon">⚡</div>
+                    <h2>2026 Quantum Jump</h2>
+                    <p>진행 중인 year-long 프로젝트</p>
+                    <a href="#quantum-jump" class="square-link">프로젝트 보기 →</a>
+                </div>
+                <div class="square-border"></div>
+            </div>
 
+            <!-- Wink and Smile -->
+            <div class="granny-square wink" data-aos="fade-up" data-aos-delay="100">
+                <div class="square-content">
+                    <div class="square-icon">🧶</div>
+                    <h3>Wink and Smile</h3>
+                    <p>코바늘 수공예 브랜드</p>
+                    <a href="#wink-smile" class="square-link">작품 보기 →</a>
+                </div>
+                <div class="square-border"></div>
+            </div>
+
+            <!-- Soop's Lab -->
+            <div class="granny-square lab" data-aos="fade-up" data-aos-delay="200">
+                <div class="square-content">
+                    <div class="square-icon">🧪</div>
+                    <h3>Soop's Lab</h3>
+                    <p>창작 실험실</p>
+                    <a href="#lab" class="square-link">실험실 들어가기 →</a>
+                </div>
+                <div class="square-border"></div>
+            </div>
+
+            <!-- 독서 프로젝트 -->
+            <div class="granny-square reading" data-aos="fade-up" data-aos-delay="300">
+                <div class="square-content">
+                    <div class="square-icon">📖</div>
+                    <h3>Monthly Reading</h3>
+                    <p>장르별 독서 여정</p>
+                    <a href="#reading" class="square-link">독서 기록 →</a>
+                </div>
+                <div class="square-border"></div>
+            </div>
+
+            <!-- Zine -->
+            <div class="granny-square zine" data-aos="fade-up" data-aos-delay="400">
+                <div class="square-content">
+                    <div class="square-icon">📄</div>
+                    <h3>Zine Making</h3>
+                    <p>소규모 출판물 제작</p>
+                    <a href="#zine" class="square-link">Zine 보기 →</a>
+                </div>
+                <div class="square-border"></div>
+            </div>
+
+            <!-- 전시 -->
+            <div class="granny-square exhibition" data-aos="fade-up" data-aos-delay="500">
+                <div class="square-content">
+                    <div class="square-icon">🎨</div>
+                    <h3>Exhibition 2026</h3>
+                    <p>9월 3인 전시 예정</p>
+                    <span class="badge">Coming Soon</span>
+                </div>
+                <div class="square-border"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 최근 업데이트 섹션 -->
+    <section class="recent-updates">
+        <div class="yarn-divider"></div>
+        <h2 class="section-title">최근 작업</h2>
+        <div class="updates-grid">
+            <div class="update-card" data-aos="fade-up">
+                <div class="update-image-placeholder">
+                    <!-- 여기에 실제 그래니 스퀘어 사진 들어갈 자리 -->
+                    <div class="placeholder-text">그래니 스퀘어<br/>작품 사진</div>
+                </div>
+                <div class="update-info">
+                    <span class="update-date">2026.01.25</span>
+                    <h4>새로운 그래니 스퀘어 블랭킷</h4>
+                </div>
+            </div>
+            
+            <div class="update-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="update-image-placeholder">
+                    <div class="placeholder-text">독서 기록<br/>표지</div>
+                </div>
+                <div class="update-info">
+                    <span class="update-date">2026.01.20</span>
+                    <h4>1월 독서: SF 장르</h4>
+                </div>
+            </div>
+
+            <div class="update-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="update-image-placeholder">
+                    <div class="placeholder-text">Zine<br/>미리보기</div>
+                </div>
+                <div class="update-info">
+                    <span class="update-date">2026.01.15</span>
+                    <h4>겨울 Zine 제작 중</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p>© 2026 SoopSoop Studio. 모든 창작물은 숲숲에게 있습니다.</p>
+            <div class="footer-links">
+                <a href="#">Instagram</a>
+                <a href="#">Email</a>
+                <a href="#">Shop</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
-
 </html>
